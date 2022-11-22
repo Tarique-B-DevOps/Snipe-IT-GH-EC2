@@ -27,4 +27,3 @@ jobs:
             git clone https://github.com/Tarique-B/Snipe-IT-GH-EC2.git
             cd Snipe-IT-GH-EC2
             docker-compose up -d
-            echo Complete the setup at "${myip}:8000"
