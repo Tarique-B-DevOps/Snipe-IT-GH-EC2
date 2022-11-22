@@ -1,22 +1,31 @@
-name: demo
+name: snipeit
+
 on:
-push:
-branches:main
-
+  push:
+    branches: main
+  
 jobs:
-deploy:
-runs-on: ubuntu-latest
+  deploy:
 
-steps
+    runs-on: ubuntu-latest
 
--name: remote ssh
-uses: appleboy/ssh-action@master
-
-with:
-    host: ${{ secrets.HOST }}
-    username: ${{ secrets.USER }}
-    key: ${{ secrets.KEY }}
-    port: ${{ secrets.PORT }}
-    script: |
-      whoami
-      ls -al
+    steps:
+   
+      
+     - name: Checkout
+       uses: actions/checkout@v2
+      
+             
+         # Runs a set of commands using the runners shell
+     - name: executing remote ssh commands using ssh key
+       uses: appleboy/ssh-action@master
+       with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            whoami
+            git clone https://github.com/Tarique-B/Snipe-IT-GH-EC2.git
+            cd /home/ubuntu/Snipe-IT-GH-EC2
+            docker-compose up -d
