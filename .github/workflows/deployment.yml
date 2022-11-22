@@ -1,24 +1,2 @@
-name: "workflow"
-on:
-  # Triggers the workflow on push or pull request events but only for the "mmain" branch
-  push:
-    branches: [ "main" ]
-jobs:
 
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-    
-    - name: multiple command
-  uses: appleboy/ssh-action@master
-  with:
-    host: ${{ secrets.HOST }}
-    username: ${{ secrets.USER }}
-    key: ${{ secrets.KEY }}
-    port: ${{ secrets.PORT }}
-    script: |
-      git clone https://github.com/Tarique-B/Snipe-IT-GH-EC2.git
-      cd Snipe-IT-GH-EC2
-      docker-compose up -d
                
